@@ -2,13 +2,14 @@ package com.gametemplate.Basic;
 import com.gametemplate.Image.GTImage;
 
 import java.awt.*;
+import java.io.File;
 import java.util.*;
 
 public class ImageStorage {
     public static Map<String, Image> images = new HashMap<>();
     public static void loadImage(String path){
         String lowcase = path;  //to convert lowcase? It may cause some problem when get image by name...
-        int lastsplash = lowcase.lastIndexOf("/");
+        int lastsplash = lowcase.lastIndexOf(File.separatorChar);
         String substr = lowcase.substring(lastsplash+1);
         String filename = substr.substring(0, substr.lastIndexOf("."));
         //System.out.println(filename+"\nfilepath:" + path);
