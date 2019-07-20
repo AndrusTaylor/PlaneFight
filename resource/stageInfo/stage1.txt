@@ -1,0 +1,10 @@
+LINEAR 800 50 400 -100 10 enemy1 3 enemy1_down1 enemy1_down2 enemy1_down3 0 4
+LINEAR 800 50 600 -100 10 enemy1 3 enemy1_down1 enemy1_down2 enemy1_down3 0 4
+LINEAR 800 50 800 -100 10 enemy1 3 enemy1_down1 enemy1_down2 enemy1_down3 0 4
+LINEAR 800 50 1000 -100 10 enemy1 3 enemy1_down1 enemy1_down2 enemy1_down3 0 4
+SIN 1200 100 -120 900 5 enemy2 4 enemy2_down1 enemy2_down2 enemy2_down3 enemy2_down4 10 2
+BEHIND 1400 5 1100 5 smallenemy 3 smallenemy_down1 smallenemy_down2 smallenemy_down3 2
+CROSS 2000 500 450 -10 100 enemy3_n1 6 enemy3_down1 enemy3_down2 enemy3_down3 enemy3_down4 enemy3_down5 enemy3_down6 100 100 1100
+BOMB 900 bomb 100 -100
+LAZER 1000 levelup 500 -100
+IMAGE 1200 test 200 100
