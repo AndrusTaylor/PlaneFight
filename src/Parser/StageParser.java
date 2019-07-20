@@ -8,13 +8,27 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.*;
 
+class ParamPackage{
+    public ParamPackage(Long t, boolean s){
+        time = t;
+        enableShoot = s;
+    }
+    public Long time;
+    public boolean enableShoot;
+}
+
 public class StageParser{
-    private HashMap<Enemy, Long> enemies = new HashMap<>();
-    private HashMap<Supply, Long> supplies = new HashMap<>();
-    private HashMap<BGImage, Long> images = new HashMap<>();
+    private HashMap<Enemy, ParamPackage> enemies = new HashMap<>();
+    private HashMap<Supply,  ParamPackage> supplies = new HashMap<>();
+    private HashMap<BGImage, ParamPackage> images = new HashMap<>();
     private static int GAME_SPEED = 5;
+    private String filename;
 
     public StageParser(String filename) throws Exception{
+        this.filename = filename;
+    }
+
+    public void parse() throws Exception{
         File file = new File(filename);
         if(!file.exists())
             System.out.println("[parser]:stage file "+filename+" not found");
@@ -45,8 +59,10 @@ public class StageParser{
         ArrayList<Enemy> removeObj = new ArrayList<>();
         while(eit.hasNext()){
             Enemy e = eit.next();
-            if(timecount-timestep<=enemies.get(e) && timecount>=enemies.get(e)) {
+            if(timecount-timestep<=enemies.get(e).time && timecount>=enemies.get(e).time) {
                 removeObj.add(e);
+                if(enemies.get(e).enableShoot)
+                    e.shoot();
                 SimplePlane.registerInstance(e);
             }
         }
@@ -59,7 +75,7 @@ public class StageParser{
         Iterator<Supply> sit = skeySet.iterator();
         while(sit.hasNext()){
             Supply s = sit.next();
-            if(timecount-timestep<=supplies.get(s) && timecount>=supplies.get(s)) {
+            if(timecount-timestep<=supplies.get(s).time && timecount>=supplies.get(s).time) {
                 removesup.add(s);
                 Supply.registerInstance(s);
             }
@@ -73,7 +89,7 @@ public class StageParser{
         Iterator<BGImage> iit = ikeySet.iterator();
         while(iit.hasNext()){
             BGImage m = iit.next();
-            if(timecount-timestep<=images.get(m) && timecount>=images.get(m)){
+            if(timecount-timestep<=images.get(m).time && timecount>=images.get(m).time){
                 removeImage.add(m);
                 BGImage.registerInstance(m);
             }
@@ -95,13 +111,17 @@ public class StageParser{
         for(int i=0;i<dieFrameCount;i++)
             str[i] = scaner.next();
         Point movedir = new Point(scaner.nextInt(), scaner.nextInt());
+        boolean enableshoot = scaner.nextBoolean();
         if(Director.debugMode) {
             System.out.println("********************************");
-            System.out.printf("Linear plane:\ntime:%d\nhp:%d nx:%d ny:%d\nscore:%d\nimg:%s\ndieFrame:%s\ndir:%s\n", time, hp, nx, ny, score, img, str, movedir);
+            System.out.printf("Linear plane:\ntime:%d\nhp:%d nx:%d ny:%d\nscore:%d\nimg:%s\ndieFrame:%s\ndir:%s\nisShoot:%s\n", time, hp, nx, ny, score, img, str, movedir, enableshoot);
         }
         SimplePlane enemy = new SimplePlane(hp, nx, ny, score, img, str, Enemy_Logic_Type.LINEAR);
         enemy.setLinearDir(movedir);
-        enemies.put(enemy, time);
+        if(enableshoot)
+           enemy.enableShoot();
+        ParamPackage p = new ParamPackage(time, enableshoot);
+        enemies.put(enemy, p);
     }
 
     private void parseSin(Scanner scaner){
@@ -117,13 +137,15 @@ public class StageParser{
             str[i] = scaner.next();
         int a = scaner.nextInt();
         int b = scaner.nextInt();
+        boolean enableshoot = scaner.nextBoolean();
         if(Director.debugMode) {
             System.out.println("********************************");
             System.out.printf("Sin plane:\ntime:%d\nhp:%d nx:%d ny:%d\nscore:%d\nimg:%s\ndieFrame:%s\na:%d b:%d\n", time, hp, nx, ny, score, img, str, a, b);
         }
         SimplePlane enemy = new SimplePlane(hp, nx, ny, score, img, str, Enemy_Logic_Type.SIN);
         enemy.setSinAB(a, b);
-        enemies.put(enemy, time);
+        ParamPackage p = new ParamPackage(time, enableshoot);
+        enemies.put(enemy, p);
     }
 
     private void parseBehind(Scanner scaner){
@@ -137,13 +159,14 @@ public class StageParser{
         for(int i=0;i<dieFrameCount;i++)
             str[i] = scaner.next();
         int vel_y = scaner.nextInt();
+        boolean enableshoot = scaner.nextBoolean();
         if(Director.debugMode) {
             System.out.println("********************************");
             System.out.printf("Behind plane:\ntime:%d\nhp:%d nx:%d\nscore:%d\nimg:%s\ndieFrame:%s\nvel_y:%d\n", time, hp, nx, score, img, str, vel_y);
         }
         SimplePlane enemy = new SimplePlane(hp, nx, 0, score, img, str, Enemy_Logic_Type.BEHIND);
         enemy.setBehindVelY(vel_y);
-        enemies.put(enemy, time);
+        ParamPackage p = new ParamPackage(time, enableshoot);
     }
 
     private void parseCross(Scanner scaner){
@@ -160,13 +183,15 @@ public class StageParser{
         int ch_h = scaner.nextInt();
         int ch_l = scaner.nextInt();
         int ch_r = scaner.nextInt();
+        boolean enableshoot = scaner.nextBoolean();
         if(Director.debugMode) {
             System.out.println("********************************");
             System.out.printf("Cross plane:\ntime:%d\nhp:%d nx:%d ny:%d\nscore:%d\nimg:%s\ndieFrame:%s\nch_h:%d ch_l:%d ch_r:%d\n", time, hp, nx, ny, score, img, str, ch_h, ch_l, ch_r);
         }
         SimplePlane enemy = new SimplePlane(hp, nx, ny, score, img, str, Enemy_Logic_Type.CROSS);
         enemy.setCrossParam(ch_h, ch_l, ch_r);
-        enemies.put(enemy, time);
+        ParamPackage p = new ParamPackage(time, enableshoot);
+        enemies.put(enemy, p);
     }
 
     private void parseBomb(Scanner scaner){
@@ -179,7 +204,8 @@ public class StageParser{
             System.out.printf("Bomb:\ntime:%d\nimage:%s x:%d y:%d\n", time, filename, nx, ny);
         }
         Supply bomb = new Supply(filename, nx, ny, SupplyType.BOMB);
-        supplies.put(bomb, time);
+        ParamPackage p = new ParamPackage(time, false);
+        supplies.put(bomb, p);
     }
 
     private void parseLazer(Scanner scaner){
@@ -192,7 +218,8 @@ public class StageParser{
             System.out.printf("Lazer:\ntime:%d\nimage:%s x:%d y:%d\n", time, filename, nx, ny);
         }
         Supply lazer = new Supply(filename, nx, ny, SupplyType.LAZER);
-        supplies.put(lazer, time);
+        ParamPackage p = new ParamPackage(time, false);
+        supplies.put(lazer, p);
     }
 
     private void parseImage(Scanner scaner){
@@ -205,7 +232,8 @@ public class StageParser{
             System.out.printf("Image:\ntime:%d\nimage:%s x:%d y:%d\n", time, filename, x, y);
         }
         BGImage image = new BGImage(filename, x, y, GAME_SPEED);
-        images.put(image, time);
+        ParamPackage p = new ParamPackage(time, false);
+        images.put(image, p);
     }
 
     public static void main(String[] args){

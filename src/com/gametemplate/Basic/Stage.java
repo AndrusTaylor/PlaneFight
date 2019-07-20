@@ -29,6 +29,7 @@ public abstract class Stage {
 
     public void quit(){
         renderList.clear();
+        effectList.clear();
         for(int i=0;i<uiList.size();i++)
             uiList.get(i).setVisible(false);
     }

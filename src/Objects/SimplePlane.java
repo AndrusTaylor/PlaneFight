@@ -5,7 +5,6 @@ import com.gametemplate.Basic.ImageStorage;
 import com.gametemplate.Image.Animation;
 import com.gametemplate.Image.GTImage;
 import com.gametemplate.Shape.Rect;
-import sun.java2d.pipe.SpanShapeRenderer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -69,7 +68,7 @@ public class SimplePlane extends Enemy{
         return enemy;
     }
 
-    public static SimplePlane registerCrossEnemy(int hp, int nx, int ny, int score,String img, String[] dieimgs, int ch, int cl, int cr){
+    public static SimplePlane registearCrossEnemy(int hp, int nx, int ny, int score,String img, String[] dieimgs, int ch, int cl, int cr){
         SimplePlane enemy = new SimplePlane(hp, nx, ny, score, img, dieimgs, Enemy_Logic_Type.CROSS);
         enemy.setCrossParam(ch, cl, cr);
         enemy.setVisiable(true);
@@ -120,8 +119,8 @@ public class SimplePlane extends Enemy{
     }
 
     public void setSinAB(int a, int dy){
-        sinA = a;
-        sinDy = dy;
+        this.sinA = a;
+        this.sinDy = dy;
     }
 
     public void setBehindVelY(int y){
@@ -131,7 +130,7 @@ public class SimplePlane extends Enemy{
         collision_rect.setCenter(this.x, this.y);
     }
 
-    private void shoot(){
+    public void shoot(){
         bulletTimer.start();
     }
 

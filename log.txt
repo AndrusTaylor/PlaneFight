@@ -1,0 +1,5 @@
+2019.7.20
+写了场景解析类StageParser来解析场景文件(resource/stage/下)
+将gamestage1变成类gameStage来自动通过场景文件来产生场景。
+修改了gameStage类产生两次飞机的情况。
+修改了bgm播放的情况，现在可以循环播放了。。

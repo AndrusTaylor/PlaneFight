@@ -1,11 +1,8 @@
 package Stages;
 
-import Objects.Plane;
 import com.gametemplate.Basic.Director;
-import com.gametemplate.Basic.ImageStorage;
 import com.gametemplate.Basic.Stage;
 import com.gametemplate.Image.Animation;
-import com.gametemplate.Image.GTImage;
 import com.gametemplate.Shape.Text;
 
 import java.awt.*;

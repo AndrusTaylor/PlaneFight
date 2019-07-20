@@ -1,6 +1,6 @@
 package Objects;
 
-import Stages.gamestage1;
+import Stages.gameStage;
 import com.gametemplate.Basic.Canva;
 import com.gametemplate.Basic.Director;
 import com.gametemplate.Basic.ImageStorage;
@@ -120,7 +120,7 @@ public class Plane extends Object implements Drawable {
             ani.play();
             Director.getCurrentStage().addToEffect(ani);
         }
-        ArrayList<Enemy> enemies = ((gamestage1)Director.getCurrentStage()).enemies;
+        ArrayList<Enemy> enemies = ((gameStage)Director.getCurrentStage()).enemies;
         for(int i=0;i<enemies.size();i++){
             enemies.get(i).hpDown(50);
         }

@@ -7,6 +7,8 @@ import com.gametemplate.Basic.*;
 
 import Stages.*;
 import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+import sun.audio.ContinuousAudioDataStream;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -18,17 +20,23 @@ public class Main extends GameTemplate{
         super("Plane Fight", 1200, 800, 30);
     }
 
-    @Override
-    protected void init(){
-        Director.debugMode = false;
+    private void playBGM(){
         try {
             FileInputStream inputStream = new FileInputStream(new File("./resource/audio/bgm.wav"));
-            AudioPlayer.player.start(inputStream);
+            AudioStream as = new AudioStream(inputStream);
+            ContinuousAudioDataStream cas = new ContinuousAudioDataStream(as.getData());
+            AudioPlayer.player.start(cas);
         }catch (Exception e){
             System.out.println("no audio");
             e.printStackTrace();
         }
+    }
 
+    @Override
+    protected void init(){
+        //Open DEBUG Mode
+        Director.debugMode = false;
+        playBGM();
     }
 
     @Override
@@ -64,7 +72,7 @@ public class Main extends GameTemplate{
     protected void stagePreload(){
         Stage welcomStage = new welcomeStage();
         Director.addStage("welcomeStage", welcomStage);
-        Stage gamestage1 = new gamestage1();
+        Stage gamestage1 = new gameStage("stage1.txt");
         Director.addStage("gameStage1", gamestage1);
 
         Director.changeStage("welcomeStage");

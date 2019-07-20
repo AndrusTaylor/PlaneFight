@@ -15,4 +15,5 @@ public abstract class Enemy extends Object implements Drawable {
     public abstract void destroy();
     public abstract void hpDown(int decrease);
     public int getScore(int score){ return score;}
+    public abstract void shoot();
 }
