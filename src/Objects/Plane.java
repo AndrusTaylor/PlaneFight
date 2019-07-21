@@ -175,9 +175,9 @@ public class Plane extends Object implements Drawable {
             retryButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    retryButton.setVisible(false);
                     Director.getCurrentStage().quit();
                     Director.getCurrentStage().init();
-                    retryButton.setVisible(false);
                 }
             });
         }

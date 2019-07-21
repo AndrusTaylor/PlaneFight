@@ -28,12 +28,15 @@ public class gameStage extends Stage {
 
     public gameStage(String stagefile){
         super();
+        enemies = new ArrayList<>();
+        supplies = new ArrayList<>();
+        bullets = new ArrayList<>();
+        bgimages = new ArrayList<>();
         try {
             parser = new StageParser("./resource/stageInfo/" + stagefile);
         }catch (Exception e){
             e.printStackTrace();
         }
-        init();
     }
 
     public void init(){
