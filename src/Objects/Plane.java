@@ -17,6 +17,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.zip.DeflaterInputStream;
 
 public class Plane extends Object implements Drawable {
     private static int SPEED = 10;
@@ -51,7 +52,10 @@ public class Plane extends Object implements Drawable {
         collision_rect.setCenter(x, y);
         collision_rect.setColor(Color.GREEN);
         this.isdie = false;
-        this.bombcount = 3;
+        if(Director.debugMode)
+            this.bombcount = 100;
+        else
+            this.bombcount = 3;
 
         setAttachBulletType(AttachBulletType.NORMAL);
 

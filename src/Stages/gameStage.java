@@ -5,6 +5,7 @@ import Objects.*;
 import Parser.StageParser;
 import com.gametemplate.Basic.*;
 import com.gametemplate.Image.GTImage;
+import com.gametemplate.Shape.Text;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,6 +24,7 @@ public class gameStage extends Stage {
     private GTImage warning;
     private Score score;
     private StageParser parser;
+    private boolean isend = false;
 
     public gameStage(String stagefile){
         super();
@@ -31,9 +33,15 @@ public class gameStage extends Stage {
         }catch (Exception e){
             e.printStackTrace();
         }
+        init();
     }
 
     public void init(){
+        super.init();
+        enemies = new ArrayList<>();
+        supplies = new ArrayList<>();
+        bullets = new ArrayList<>();
+        bgimages = new ArrayList<>();
         try {
             parser.parse();
         }catch (Exception e){
@@ -73,12 +81,22 @@ public class gameStage extends Stage {
         bullets.clear();
         supplies.clear();
         bgimages.clear();
+        /*
+        enemies = null;
+        bullets = null;
+        bgimages = null;
+        supplies = null;
+         */
         plane = null;
     }
 
     @Override
     public void KeyPressed(KeyEvent e){
         plane.control_keypressed(e);
+        if(isend) {
+            if (e.getKeyCode() == KeyEvent.VK_SPACE)
+                Director.changeStage(nextStage);
+        }
     }
 
     @Override
@@ -88,8 +106,8 @@ public class gameStage extends Stage {
 
     @Override
     public void update(Graphics2D g){
-        timecount+=10;
-        parser.generateMap(timecount, 10);
+        timecount+=flySpeed;
+        parser.generateMap(timecount,flySpeed);
         for(int i=0;i<bgimages.size();i++)
             bgimages.get(i).draw(g);
         super.update(g);
@@ -107,6 +125,15 @@ public class gameStage extends Stage {
 
         for(int i=0;i<enemies.size();i++){
             enemies.get(i).draw(g);
+        }
+        if(enemies.isEmpty() && parser.isEmpty()) {
+            isend = true;
+            if(nextStage.equals("endStage"))
+                Director.changeStage(nextStage);
+            Text gameover = new Text("本关结束，按下空格进入下一关", 450, 350, 30, Font.BOLD);
+            gameover.setColor(Color.GREEN);
+            gameover.setVisiable(true);
+            addToRender(gameover);
         }
     }
 }

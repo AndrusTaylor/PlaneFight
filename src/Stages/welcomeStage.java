@@ -17,6 +17,7 @@ public class welcomeStage extends Stage {
     public Animation flyani;
     public Timer blinkTimer;
     public void init(){
+        super.init();
         title = new Text("飞机大战", 100, 100, 100, Font.PLAIN);
         title.setColor(Color.CYAN);
         title.moveTo(400, 200);
@@ -47,10 +48,17 @@ public class welcomeStage extends Stage {
     @Override
     public void KeyPressed(KeyEvent e){
         if(e.getKeyCode() == KeyEvent.VK_SPACE)
-            Director.changeStage("gameStage1");
+            Director.changeStage(nextStage);
     }
 
     @Override
     public void KeyReleased(KeyEvent e){
+    }
+
+    @Override
+    public void quit(){
+        super.quit();
+        blinkTimer.stop();
+        blinkTimer = null;
     }
 }

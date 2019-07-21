@@ -28,6 +28,8 @@ public class StageParser{
         this.filename = filename;
     }
 
+    public boolean isEmpty(){ return enemies.size()==0; }
+
     public void parse() throws Exception{
         File file = new File(filename);
         if(!file.exists())
@@ -167,6 +169,7 @@ public class StageParser{
         SimplePlane enemy = new SimplePlane(hp, nx, 0, score, img, str, Enemy_Logic_Type.BEHIND);
         enemy.setBehindVelY(vel_y);
         ParamPackage p = new ParamPackage(time, enableshoot);
+        enemies.put(enemy, p);
     }
 
     private void parseCross(Scanner scaner){

@@ -74,7 +74,13 @@ public class Main extends GameTemplate{
         Director.addStage("welcomeStage", welcomStage);
         Stage gamestage1 = new gameStage("stage1.txt");
         Director.addStage("gameStage1", gamestage1);
-
+        welcomStage.setNextStage("gameStage1");
+        Stage gamestage2 = new gameStage("stage2.txt");
+        Director.addStage("gameStage2",gamestage2);
+        gamestage1.setNextStage("gameStage2");
+        Stage gamefinish = new endStage();
+        Director.addStage("endStage", gamefinish);
+        gamestage2.setNextStage("endStage");
         Director.changeStage("welcomeStage");
     }
 

@@ -13,25 +13,36 @@ public abstract class Stage {
     protected ArrayList<Drawable> effectList;
     //To show Components of java.swing, always show on the top
     protected ArrayList<Component> uiList;
+    protected String nextStage;
 
     public ArrayList<Drawable> getRenderList(){return renderList;}
     public ArrayList<Drawable> getEffectList(){return effectList;}
     public ArrayList<Component> getUIList(){return uiList;}
 
     public Stage(){
-        renderList = new ArrayList<>();
-        uiList = new ArrayList<>();
-        effectList = new ArrayList<>();
+    }
+
+    public void setNextStage(String ns){
+        nextStage = ns;
     }
 
     //usr will rewrite it to init the stage
-    public abstract void init();
+    public void init(){
+        renderList = new ArrayList<>();
+        effectList = new ArrayList<>();
+        uiList = new ArrayList<>();
+    };
 
     public void quit(){
         renderList.clear();
         effectList.clear();
         for(int i=0;i<uiList.size();i++)
             uiList.get(i).setVisible(false);
+        /*
+        renderList = null;
+        effectList = null;
+        uiList = null;
+        */
     }
 
     public void addToRender(Drawable image){

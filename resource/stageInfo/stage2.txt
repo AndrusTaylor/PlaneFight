@@ -1,0 +1,45 @@
+LAZER 1000 levelup 500 -100
+LINEAR 800 5 200 -100 10 enemy1 3 enemy1_down1 enemy1_down2 enemy1_down3 0 4 false
+LINEAR 800 5 400 -100 10 enemy1 3 enemy1_down1 enemy1_down2 enemy1_down3 0 4 true
+LINEAR 800 5 600 -100 10 enemy1 3 enemy1_down1 enemy1_down2 enemy1_down3 0 4 true
+LINEAR 800 5 800 -100 10 enemy1 3 enemy1_down1 enemy1_down2 enemy1_down3 0 4 true
+LINEAR 800 5 1000 -100 10 enemy1 3 enemy1_down1 enemy1_down2 enemy1_down3 0 4 false
+SIN 1200 10 600 2 5 enemy2 4 enemy2_down1 enemy2_down2 enemy2_down3 enemy2_down4 10 2 true
+SIN 1600 10 200 2 5 enemy2 4 enemy2_down1 enemy2_down2 enemy2_down3 enemy2_down4 10 2 true
+SIN 1600 10 1000 2 5 enemy2 4 enemy2_down1 enemy2_down2 enemy2_down3 enemy2_down4 10 2 true
+IMAGE 1800 planet2 500 -300
+BEHIND 2200 5 100 5 smallenemy 3 smallenemy_down1 smallenemy_down2 smallenemy_down3 2 true
+BEHIND 2800 5 300 5 smallenemy 3 smallenemy_down1 smallenemy_down2 smallenemy_down3 2 true
+BEHIND 2400 5 500 5 smallenemy 3 smallenemy_down1 smallenemy_down2 smallenemy_down3 2 true
+BEHIND 2400 5 700 5 smallenemy 3 smallenemy_down1 smallenemy_down2 smallenemy_down3 2 true
+BEHIND 2800 5 900 5 smallenemy 3 smallenemy_down1 smallenemy_down2 smallenemy_down3 2 true
+BEHIND 2200 5 1100 5 smallenemy 3 smallenemy_down1 smallenemy_down2 smallenemy_down3 2 true
+SIN 3600 10 600 2 5 enemy2 4 enemy2_down1 enemy2_down2 enemy2_down3 enemy2_down4 10 2 true
+SIN 3200 10 300 2 5 enemy2 4 enemy2_down1 enemy2_down2 enemy2_down3 enemy2_down4 10 2 true
+SIN 3200 10 900 2 5 enemy2 4 enemy2_down1 enemy2_down2 enemy2_down3 enemy2_down4 10 2 true
+LINEAR 4000 5 200 -100 10 enemy1 3 enemy1_down1 enemy1_down2 enemy1_down3 0 4 false
+LINEAR 3600 5 400 -100 10 enemy1 3 enemy1_down1 enemy1_down2 enemy1_down3 0 4 true
+LINEAR 3200 5 600 -100 10 enemy1 3 enemy1_down1 enemy1_down2 enemy1_down3 0 4 true
+LINEAR 3600 5 800 -100 10 enemy1 3 enemy1_down1 enemy1_down2 enemy1_down3 0 4 true
+LINEAR 4000 5 1000 -100 10 enemy1 3 enemy1_down1 enemy1_down2 enemy1_down3 0 4 false
+IMAGE 4200 planet3 800 -100
+SIN 4600 60 100 2 5 enemy2 4 enemy2_down1 enemy2_down2 enemy2_down3 enemy2_down4 10 2 true
+SIN 4800 60 100 2 5 enemy2 4 enemy2_down1 enemy2_down2 enemy2_down3 enemy2_down4 10 2 true
+SIN 5000 60 100 2 5 enemy2 4 enemy2_down1 enemy2_down2 enemy2_down3 enemy2_down4 10 2 true
+SIN 4600 60 600 2 5 enemy2 4 enemy2_down1 enemy2_down2 enemy2_down3 enemy2_down4 10 2 true
+SIN 4800 60 600 2 5 enemy2 4 enemy2_down1 enemy2_down2 enemy2_down3 enemy2_down4 10 2 true
+SIN 5000 60 600 2 5 enemy2 4 enemy2_down1 enemy2_down2 enemy2_down3 enemy2_down4 10 2 true
+SIN 4600 60 300 2 5 enemy2 4 enemy2_down1 enemy2_down2 enemy2_down3 enemy2_down4 10 2 true
+SIN 4800 60 300 2 5 enemy2 4 enemy2_down1 enemy2_down2 enemy2_down3 enemy2_down4 10 2 true
+SIN 5000 60 300 2 5 enemy2 4 enemy2_down1 enemy2_down2 enemy2_down3 enemy2_down4 10 2 true
+SIN 4600 60 900 2 5 enemy2 4 enemy2_down1 enemy2_down2 enemy2_down3 enemy2_down4 10 2 true
+SIN 4800 60 900 2 5 enemy2 4 enemy2_down1 enemy2_down2 enemy2_down3 enemy2_down4 10 2 true
+SIN 5000 60 900 2 5 enemy2 4 enemy2_down1 enemy2_down2 enemy2_down3 enemy2_down4 10 2 true
+BEHIND 5200 5 100 5 smallenemy 3 smallenemy_down1 smallenemy_down2 smallenemy_down3 2 true
+BEHIND 5800 5 300 5 smallenemy 3 smallenemy_down1 smallenemy_down2 smallenemy_down3 2 true
+BEHIND 5400 5 500 5 smallenemy 3 smallenemy_down1 smallenemy_down2 smallenemy_down3 2 true
+BEHIND 5400 5 700 5 smallenemy 3 smallenemy_down1 smallenemy_down2 smallenemy_down3 2 true
+BEHIND 5800 5 900 5 smallenemy 3 smallenemy_down1 smallenemy_down2 smallenemy_down3 2 true
+BEHIND 5200 5 1100 5 smallenemy 3 smallenemy_down1 smallenemy_down2 smallenemy_down3 2 true
+CROSS 4800 500 300 -10 100 enemy3_n1 6 enemy3_down1 enemy3_down2 enemy3_down3 enemy3_down4 enemy3_down5 enemy3_down6 100 100 1100 true
+CROSS 4800 500 1000 -10 100 enemy3_n1 6 enemy3_down1 enemy3_down2 enemy3_down3 enemy3_down4 enemy3_down5 enemy3_down6 100 100 1100 true

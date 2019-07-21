@@ -216,8 +216,13 @@ public class SimplePlane extends Enemy{
             if(Director.debugMode) {
                 collision_rect.draw(g);
             }
-            if(y > Director.getInstance().getCanva().getHeight() + 300)
-                destroy();
+            if(logic_type == Enemy_Logic_Type.BEHIND) {
+                if (y+image.getHeight()<=-100)
+                    destroy();
+            }else {
+                if (y > Director.getInstance().getCanva().getHeight() + 300)
+                    destroy();
+            }
         }
 
         if(isdie){
